@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+.kaisei-decol-regular {
+    font-family: "Kaisei Decol", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.kaisei-decol-medium {
+    font-family: "Kaisei Decol", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.kaisei-decol-bold {
+    font-family: "Kaisei Decol", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.inter-normal {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.space-grotesk-normal {
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.lexend-deca-normal {
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.button {
+    all: unset;
+    cursor: pointer;
+}
+
+/* In your main CSS file (e.g., globals.css or index.css) */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Optional: Start slightly lower for a "rise-up" effect */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Add this to your main CSS file (e.g., globals.css or index.css) */
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Base class for the animation */
+.animated-item {
+    opacity: 0; /* Start invisible */
+    animation-name: fadeInUp;
+    animation-duration: 0.6s; /* Duration for each item */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+/* Staggered delay classes using CSS custom properties (variables) */
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+.animate-delay-600 { animation-delay: 600ms; }
+.animate-delay-700 { animation-delay: 700ms; }
+.animate-delay-800 { animation-delay: 800ms; }
+/* Add more as needed for longer lists */
