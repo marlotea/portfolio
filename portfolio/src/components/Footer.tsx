@@ -38,11 +38,11 @@ const Footer: React.FC = () => {
                     </a>
                 </p>
 
-                <p>
-                    <a href="https://x.com/prxncssleia">
-                        follow me on X (formerly Twitter) @prxncssleia
-                    </a> for more frequent updates
-                </p>
+                {/*<p>*/}
+                {/*    <a href="https://x.com/prxncssleia">*/}
+                {/*        follow me on X (formerly Twitter) @prxncssleia*/}
+                {/*    </a> for more frequent updates*/}
+                {/*</p>*/}
 
                 <p className="mt-8">⟡•—— ・ ₊˚🕯️♱‧₊˚. ・ ——•⟡</p>
             </div>

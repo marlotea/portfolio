@@ -32,18 +32,18 @@ const Home: React.FC = () => {
                 />
 
                 {/* Content */}
-                <div className="relative z-10 flex flex-row space-x-15 w-2/3 justify-center p-8">
-                    <div className="flex items-center justify-center text-[#648194]">
+                <div className="relative z-10 flex flex-col lg:flex-row lg:space-x-15 w-2/3 align-center justify-center lg:p-8">
+                    <div className="flex items-center justify-center lg:justify-start text-[#648194] my-8">
                         <img src={pfp} width="200px" className="rounded-full shadow-2xl" alt="Profile" />
                     </div>
-                    <div className="flex flex-col justify-center space-y-2 w-1/2">
-                        <div className="text-[2.5rem]">Leia H.J. Chen</div>
-                        <div className="text-[1.1rem]">Software Engineering @ MountainMath Software</div>
-                        <div className="mt-2">
+                    <div className="flex flex-col justify-center space-y-2 lg:w-1/2">
+                        <div className="text-[2rem] lg:text-[2.5rem] text-center lg:text-start">Leia H.J. Chen</div>
+                        <div className="text-[1.1rem] text-center lg:text-start">Software Engineering @ MountainMath Software</div>
+                        <div className="mt-2 text-center lg:text-start">
                             Hey! I'm a third-year computer science student interested in machine learning, biotech, and robotics! Check
                             out what I do down below :)
                         </div>
-                        <div className="flex flex-row space-x-3 mt-4">
+                        <div className="flex flex-row space-x-3 mt-6 lg:mt-4 justify-center lg:justify-start">
                             <a href="https://www.linkedin.com/in/leiahjchen/" target="_blank" rel="noopener noreferrer">
                                 <img
                                     className="w-[22px] cursor-pointer transition-transform duration-300 hover:scale-125"

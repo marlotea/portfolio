@@ -5,6 +5,10 @@ import remarkGfm from 'remark-gfm';
 import gnn_architecture from '../assets/gnn_architecture.png';
 import ablation_charts from '../assets/ablation charts.png';
 import hmr from '../assets/hmr.png';
+import manage from '../assets/manage_view.png';
+import dashboard from '../assets/dashboard_view.png';
+import edit from '../assets/edit_view.png';
+
 
 // @ts-ignore
 const StyledMarkdown = ({ content }) => {
@@ -166,12 +170,21 @@ const projectsData = [
         
 This Volunteer Management App is designed to streamline the coordination and scheduling of volunteers for community organizations. It features an intuitive React frontend for easy interaction, backed by AWS Lambda functions for serverless processing and DynamoDB for scalable data storage.
         
+## Key Features
+- Volunteer Registration: Volunteers can sign up and create profiles with their availability and skills.
+- Scheduling: Admins can create events and assign volunteers based on their availability.
+- Ease of Use: A clean, user-friendly interface built with React and styled using Tailwind CSS.
+
+## Features in Development
+- OCR Integration: Implementing Optical Character Recognition (OCR) to allow volunteers to upload scanned documents (e.g., signed waivers) that are automatically processed and stored.
+- Multi-Tenancy: Enabling multiple organizations to use the app with isolated data and customized branding.
+- Notification System: Adding email/SMS notifications to remind volunteers of upcoming events and shifts.
         `,
         techStack: ["React", "AWS Lambda", "DynamoDB", "OCR", "Tailwind CSS"],
         images: [
-            "https://placehold.co/400x200/919191/ffffff?text=Volunteer+Dashboard",
-            "https://placehold.co/400x200/648194/ffffff?text=Schedule+Upload+UI",
-            "https://placehold.co/400x200/C3D2DB/000000?text=Mobile+View"
+            dashboard,
+            manage,
+            edit
         ]
     },
     {
@@ -482,7 +495,7 @@ const Project: React.FC = () => {
                 `}
             </style>
             <section id="project">
-                <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center justify-center py-16 text-black kaisei-decol-regular">
+                <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center justify-center py-16 text-black kaisei-decol-regular p-16 pt-30">
                     {/*<h1 className="text-4xl font-bold text-[#648194] mb-12">Featured Projects</h1>*/}
                     <div className="flex flex-wrap gap-16 items-stretch justify-center w-full max-w-6xl px-4">
                         {projectsData.map((project) => (

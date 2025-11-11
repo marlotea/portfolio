@@ -128,9 +128,9 @@ const About: React.FC = () => {
     return (
         <section id="about" ref={sectionRef}>
             <div className="w-screen h-screen bg-gray-100 flex items-center justify-center text-black kaisei-decol-regular">
-                <div className="flex flex-row items-center justify-center space-x-8 w-full">
+                <div className="flex flex-col lg:flex-row items-center justify-center space-x-8 w-full space-y-8">
                     {/* LEFT SECTION (Typing Animation) - No changes needed here, as the typing itself acts as a focus */}
-                    <div className="text-[3rem] text-right w-1/5 h-[9rem]">
+                    <div className="text-[3rem] text-right w-[16rem] h-[9rem] mt-4">
                         <div className="flex flex-col items-end">
                             <span className="whitespace-nowrap">
                                 {displayText.slice(0, texts[currentTextIndex].line1.length)}
@@ -150,7 +150,7 @@ const About: React.FC = () => {
                     {/* RIGHT SECTION (Staggered Fade-in) */}
                     <div className="space-y-8">
                         {/* Group 1: I am currently a... */}
-                        <div className={`space-y-4 ${getAnimatedClass('animate-delay-100')}`}>
+                        <div className={`space-y-2 ${getAnimatedClass('animate-delay-100')}`}>
                             {/*  kaisei-decol-bold text-[#648194]  */}
                             <p className="text-md space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">I am currently a...</p>
                             <div>
@@ -167,7 +167,7 @@ const About: React.FC = () => {
                         </div>
 
                         {/* Group 2: Talk to me about... */}
-                        <div className={`space-y-4 ${getAnimatedClass('animate-delay-400')}`}>
+                        <div className={`space-y-2 ${getAnimatedClass('animate-delay-400')}`}>
                             {/* background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%); */}
                             <p className="text-md space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">
                                 Talk to me about...
@@ -180,7 +180,7 @@ const About: React.FC = () => {
                         </div>
 
                         {/* Group 3: I also like... */}
-                        <div className={`space-y-4 ${getAnimatedClass('animate-delay-700')}`}>
+                        <div className={`space-y-2 ${getAnimatedClass('animate-delay-700')}`}>
                             <p className="text-md space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">I also like...</p>
                             <div>
                                 <p className={getAnimatedClass('animate-delay-1000')}>🥘 cooking when I don't have to</p>

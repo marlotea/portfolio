@@ -197,7 +197,7 @@ const Experience: React.FC = () => {
             </style>
 
             <div className="w-screen h-screen bg-gray-100 flex items-center justify-start text-black kaisei-decol-regular overflow-x-auto">
-                <div className="flex flex-col space-y-[-26px] items-start ml-40 h-1/2 min-w-max pr-40">
+                <div className="flex flex-col space-y-[-26px] items-start ml-6 lg:ml-10 h-1/2 min-w-max pr-40">
 
                     {/* Timeline Container (Relative positioning for the bars) */}
                     <div className="relative w-full">
