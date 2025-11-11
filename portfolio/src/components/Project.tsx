@@ -2,12 +2,9 @@ import React, { useState, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight, HardHat, Code } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import gnn_architecture from '../assets/projects/gnn/gnn_architecture.png';
-import ablation_charts from '../assets/projects/gnn/ablation charts.png';
-import hmr from '../assets/projects/gnn/hmr.png';
-import dashboard from '../assets/projects/vm/dashboard_view.png';
-import edit from '../assets/projects/vm/edit_view.png';
-import manage from '../assets/projects/vm/manage_view.png';
+import gnn_architecture from '../assets/gnn_architecture.png';
+import ablation_charts from '../assets/ablation charts.png';
+import hmr from '../assets/hmr.png';
 
 const StyledMarkdown = ({ content }) => {
     return (
@@ -157,26 +154,17 @@ const projectsData = [
     {
         id: 2,
         title: "🖥️ Volunteer Management App",
-        shortDescription: "This project helps streamline volunteer coordination for community organizations. Built with React, AWS Lambda and DynamoDB for a serverless architecture.",
+        shortDescription: "This project helps streamline volunteer coordination for community organizations. Built with React, AWS Lambda and DynamoDB for a serverless architecture, efficiently stores and manages volunteer information, making scheduling and communication seamless.",
         longDescription: `## Project Description
         
-This Volunteer Management App is designed to streamline the coordination and scheduling of volunteers for community organizations. It features an intuitive **React frontend** for easy interaction, backed by **AWS Lambda** functions for **serverless processing** and **DynamoDB** for **scalable data storage**.
+This Volunteer Management App is designed to streamline the coordination and scheduling of volunteers for community organizations. It features an intuitive React frontend for easy interaction, backed by AWS Lambda functions for serverless processing and DynamoDB for scalable data storage.
         
-## Key Features
-- **Volunteer Registration:** Simple sign-up process for new volunteers.
-- **Event Scheduling:** Create and manage volunteer events with date, time, and location details.
-- **Ease of Use:** Intuitive UI for both volunteers and organizers to manage their activities.
-
-## Features In Progress
-- **Automated Reminders:** Email and SMS notifications for upcoming and cancelled events.
-- **Multi-Tenancy:** Support for multiple organizations to use the same app instance.
-- **Image to Event:** Upload an image of a flyer to auto-generate event details using OCR and NLP techniques.
         `,
-        techStack: ["React", "AWS Lambda", "AWS DynamoDB", "Tailwind CSS"],
+        techStack: ["React", "AWS Lambda", "DynamoDB", "OCR", "Tailwind CSS"],
         images: [
-            dashboard,
-            edit,
-            manage
+            "https://placehold.co/400x200/919191/ffffff?text=Volunteer+Dashboard",
+            "https://placehold.co/400x200/648194/ffffff?text=Schedule+Upload+UI",
+            "https://placehold.co/400x200/C3D2DB/000000?text=Mobile+View"
         ]
     },
     {

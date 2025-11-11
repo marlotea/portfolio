@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import pfp from '../assets/icons/pfp.png';
-import linkedin from '../assets/icons/linkedin.png';
-import github from '../assets/icons/github.png';
-import twitter from '../assets/icons/twitter.png';
+import pfp from '../assets/pfp.png';
+import linkedin from '../assets/linkedin.png';
+import github from '../assets/github.png';
+import twitter from '../assets/twitter.png';
 
 const Home: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
