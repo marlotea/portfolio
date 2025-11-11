@@ -68,6 +68,7 @@ const experienceData = [
 ];
 
 // Reusable component for the experience card
+// @ts-ignore
 const ExperienceCard = ({ item, isFirst, getAnimatedClass, index }) => {
     const IconComponent = item.icon;
     const cardClass = getAnimatedClass(index);
@@ -102,7 +103,7 @@ const ExperienceCard = ({ item, isFirst, getAnimatedClass, index }) => {
                 {/* Details */}
                 {item.details && item.details.length > 0 && (
                     <div className="flex flex-col pt-2 space-y-2 text-sm text-gray-700">
-                        {item.details.map((detail, detailIndex) => (
+                        {item.details.map((detail: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, detailIndex: React.Key | null | undefined) => (
                             <div key={detailIndex} className="flex flex-row items-start space-x-2">
                                 {/* Using ChevronRight for a clean bullet point look */}
                                 <ChevronRight size={14} className="text-[#91ADC8] flex-shrink-0 mt-0.5"/>

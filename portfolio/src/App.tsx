@@ -16,8 +16,10 @@ function App() {
 
     useEffect(() => {
         const updateIndicator = () => {
+            // @ts-ignore
             const activeElement = tabRefs.current[activeTab];
             if (activeElement && navRef.current) {
+                // @ts-ignore
                 const navRect = navRef.current.getBoundingClientRect();
                 const tabRect = activeElement.getBoundingClientRect();
                 setIndicatorStyle({
@@ -58,6 +60,7 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [tabs]);
 
+    // @ts-ignore
     const scrollToSection = (tab) => {
         setActiveTab(tab);
         const element = document.getElementById(tab.toLowerCase());
@@ -66,7 +69,9 @@ function App() {
         }
     };
 
-        return (
+        // @ts-ignore
+    // @ts-ignore
+    return (
     <div className="kaisei-decol-regular">
         <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
             <div
@@ -86,7 +91,12 @@ function App() {
                 {tabs.map((tab) => (
                     <button
                         key={tab}
-                        ref={el => tabRefs.current[tab] = el}
+                        ref={(el) => {
+                            if (el) {
+                                // @ts-ignore
+                                tabRefs.current[tab] = el;
+                            }
+                        }}
                         onClick={() => scrollToSection(tab)}
                         className={`relative z-10 px-6 py-2 text-sm font-medium transition-colors duration-300 border-0 bg-transparent outline-none ${
                             activeTab === tab
