@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import mountainmath from '../assets/mountainmath.png'
 import igem from '../assets/igem.png'
-import {Aperture, BookOpen, Briefcase, ChevronRight, ChevronDown, ChevronUp, Clock, Code, FlaskConical} from "lucide-react";
+import {Aperture, Briefcase, ChevronRight, ChevronDown, ChevronUp, Code, FlaskConical} from "lucide-react";
 
 const experienceData = [
     {
