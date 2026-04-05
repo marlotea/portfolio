@@ -127,40 +127,39 @@ const About: React.FC = () => {
 
     return (
         <section id="about" ref={sectionRef}>
-            <div className="w-screen h-screen bg-gray-100 flex items-center justify-center text-black kaisei-decol-regular">
-                <div className="flex flex-col lg:flex-row items-center justify-center space-x-8 w-full space-y-8">
-                    {/* LEFT SECTION (Typing Animation) - No changes needed here, as the typing itself acts as a focus */}
-                    <div className="text-[3rem] text-right w-[16rem] h-[9rem] mt-4">
-                        <div className="flex flex-col items-end">
+            <div className="w-full min-h-screen bg-gray-100 flex items-center justify-center text-black kaisei-decol-regular p-4 py-16 md:py-0">
+                <div className="flex flex-col lg:flex-row items-center justify-center lg:space-x-8 w-full space-y-8 lg:space-y-0 max-w-6xl">
+                    {/* LEFT SECTION (Typing Animation) */}
+                    <div className="text-[2.5rem] sm:text-[3rem] text-center lg:text-right w-full lg:w-[16rem] h-[6rem] sm:h-[8rem] lg:h-[9rem] mt-4 flex items-center justify-center lg:justify-end">
+                        <div className="flex flex-col items-center lg:items-end">
                             <span className="whitespace-nowrap">
                                 {displayText.slice(0, texts[currentTextIndex].line1.length)}
                                 {displayText.length < texts[currentTextIndex].line1.length && (
-                                    <span className="inline-block w-[3px] h-[2.5rem] bg-black animate-blink ml-1"></span>
+                                    <span className="inline-block w-[3px] h-[2rem] sm:h-[2.5rem] bg-black animate-blink ml-1"></span>
                                 )}
                             </span>
                             <span className="whitespace-nowrap">
                                 {displayText.slice(texts[currentTextIndex].line1.length)}
                                 {displayText.length >= texts[currentTextIndex].line1.length && (
-                                    <span className="inline-block w-[3px] h-[2.5rem] bg-black animate-blink ml-1"></span>
+                                    <span className="inline-block w-[3px] h-[2rem] sm:h-[2.5rem] bg-black animate-blink ml-1"></span>
                                 )}
                             </span>
                         </div>
                     </div>
 
                     {/* RIGHT SECTION (Staggered Fade-in) */}
-                    <div className="space-y-8">
+                    <div className="space-y-6 md:space-y-8 px-4 md:px-0">
                         {/* Group 1: I am currently a... */}
                         <div className={`space-y-2 ${getAnimatedClass('animate-delay-100')}`}>
-                            {/*  kaisei-decol-bold text-[#648194]  */}
-                            <p className="text-md space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">I am currently a...</p>
-                            <div>
-                                <div className={`flex flex-row space-x-1 ${getAnimatedClass('animate-delay-200')}`}>
+                            <p className="text-md md:text-lg space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">I am currently a...</p>
+                            <div className="text-sm md:text-base">
+                                <div className={`flex flex-col sm:flex-row sm:space-x-1 ${getAnimatedClass('animate-delay-200')}`}>
                                     <p>B. Sc. Computer Science</p><p className="text-[#919191]"> @ UBC</p>
                                 </div>
-                                <div className={`flex flex-row space-x-1 ${getAnimatedClass('animate-delay-300')}`}>
+                                <div className={`flex flex-col sm:flex-row sm:space-x-1 ${getAnimatedClass('animate-delay-300')}`}>
                                     <p>Software Engineering</p><p className="text-[#919191]">@ MountainMath Software</p>
                                 </div>
-                                <div className={`flex flex-row space-x-1 ${getAnimatedClass('animate-delay-400')}`}>
+                                <div className={`flex flex-col sm:flex-row sm:space-x-1 ${getAnimatedClass('animate-delay-400')}`}>
                                     <p>Firmware Developer</p><p className="text-[#919191]"> @ UBC iGEM</p>
                                 </div>
                             </div>
@@ -168,11 +167,10 @@ const About: React.FC = () => {
 
                         {/* Group 2: Talk to me about... */}
                         <div className={`space-y-2 ${getAnimatedClass('animate-delay-400')}`}>
-                            {/* background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%); */}
-                            <p className="text-md space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">
+                            <p className="text-sm md:text-lg space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">
                                 Talk to me about...
                             </p>
-                            <div>
+                            <div className="text-sm md:text-base">
                                 <p className={getAnimatedClass('animate-delay-600')}>📊 ML Engineering</p>
                                 <p className={getAnimatedClass('animate-delay-700')}>🧬 Biotechnology</p>
                                 <p className={getAnimatedClass('animate-delay-800')}>🧠 Development of AI</p>
@@ -181,8 +179,8 @@ const About: React.FC = () => {
 
                         {/* Group 3: I also like... */}
                         <div className={`space-y-2 ${getAnimatedClass('animate-delay-700')}`}>
-                            <p className="text-md space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">I also like...</p>
-                            <div>
+                            <p className="text-sm md:text-lg space-grotesk-normal bg-gradient-to-r from-[#647FBC] to-[#AED6CF] inline-block text-transparent bg-clip-text">I also like...</p>
+                            <div className="text-sm md:text-base">
                                 <p className={getAnimatedClass('animate-delay-1000')}>🥘 cooking when I don't have to</p>
                                 <p className={getAnimatedClass('animate-delay-1100')}>🎨 splashing colours</p>
                                 <p className={getAnimatedClass('animate-delay-1200')}>🖋️ temporarily tattooing my friends</p>

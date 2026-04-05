@@ -20,9 +20,9 @@ const Footer: React.FC = () => {
     }, []);
 
     return (
-        <div id="footer" className="relative bg-gray-100  justify-center pt-30 pb-20 text-black kaisei-decol-regular space-y-4">
+        <div id="footer" className="relative bg-gray-100 justify-center pt-20 sm:pt-30 pb-12 sm:pb-20 text-black kaisei-decol-regular space-y-4 overflow-hidden">
             <div
-                className="absolute -inset-4 transition-all duration-700 "
+                className="absolute inset-0 transition-all duration-700 "
                 style={{
                     background: 'linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)',
                     clipPath: isVisible
@@ -31,9 +31,9 @@ const Footer: React.FC = () => {
                 }}
             />
 
-            <div className="relative z-10 flex flex-col items-center">
-                <p>feel free to reach out vi
-                    <a href="https://www.linkedin.com/in/leiahjchen/" target="_blank" rel="noopener noreferrer">
+            <div className="relative z-10 flex flex-col items-center px-4">
+                <p className="text-sm sm:text-base text-center">feel free to reach out vi
+                    <a href="https://www.linkedin.com/in/leiahjchen/" target="_blank" rel="noopener noreferrer" className="hover:underline">
                         a LinkedIn! 🤍
                     </a>
                 </p>
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
                 {/*    </a> for more frequent updates*/}
                 {/*</p>*/}
 
-                <p className="mt-8">⟡•—— ・ ₊˚🕯️♱‧₊˚. ・ ——•⟡</p>
+                <p className="mt-6 sm:mt-8 text-sm sm:text-base">⟡•—— ・ ₊˚🕯️♱‧₊˚. ・ ——•⟡</p>
             </div>
         </div>
     );

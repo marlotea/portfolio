@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
     return (
         <section id="home">
-            <div className="w-screen h-screen relative flex items-center justify-center text-black kaisei-decol-regular animate-fade-in">
+            <div className="w-full min-h-screen relative flex items-center justify-center text-black kaisei-decol-regular animate-fade-in">
 
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#93a5cf] to-[#e4efe9] transition-all duration-500" />
 
@@ -32,14 +32,14 @@ const Home: React.FC = () => {
                 />
 
                 {/* Content */}
-                <div className="relative z-10 flex flex-col lg:flex-row lg:space-x-15 w-2/3 align-center justify-center lg:p-8">
-                    <div className="flex items-center justify-center lg:justify-start text-[#648194] my-8">
-                        <img src={pfp} width="200px" className="rounded-full shadow-2xl" alt="Profile" />
+                <div className="relative z-10 flex flex-col lg:flex-row lg:space-x-15 w-11/12 md:w-4/5 lg:w-2/3 align-center justify-center p-4 pt-20 md:pt-4 lg:p-8">
+                    <div className="flex items-center justify-center lg:justify-start text-[#648194] my-4 lg:my-8">
+                        <img src={pfp} className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 rounded-full shadow-2xl" alt="Profile" />
                     </div>
                     <div className="flex flex-col justify-center space-y-2 lg:w-1/2">
-                        <div className="text-[2rem] lg:text-[2.5rem] text-center lg:text-start">Leia H.J. Chen</div>
-                        <div className="text-[1.1rem] text-center lg:text-start">Software Engineering @ MountainMath Software</div>
-                        <div className="mt-2 text-center lg:text-start">
+                        <div className="text-[1.75rem] sm:text-[2rem] lg:text-[2.5rem] text-center lg:text-start">Leia H.J. Chen</div>
+                        <div className="text-base sm:text-lg lg:text-[1.1rem] text-center lg:text-start">Software Engineering @ MountainMath Software</div>
+                        <div className="mt-2 text-sm sm:text-base text-center lg:text-start">
                             Hey! I'm a third-year computer science student interested in machine learning, biotech, and robotics! Check
                             out what I do down below :)
                         </div>

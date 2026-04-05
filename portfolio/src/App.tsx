@@ -5,10 +5,12 @@ import About from "./components/About.tsx";
 import Project from "./components/Project.tsx";
 import Experience from "./components/Experience.tsx";
 import Footer from './components/Footer.tsx';
+import { Menu, X } from 'lucide-react';
 
 function App() {
     const [activeTab, setActiveTab] = useState('Home');
     const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navRef = useRef(null);
     const tabRefs = useRef({});
 
@@ -63,6 +65,7 @@ function App() {
     // @ts-ignore
     const scrollToSection = (tab) => {
         setActiveTab(tab);
+        setIsMobileMenuOpen(false);
         const element = document.getElementById(tab.toLowerCase());
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -72,8 +75,9 @@ function App() {
         // @ts-ignore
     // @ts-ignore
     return (
-    <div className="kaisei-decol-regular">
-        <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+    <div className="kaisei-decol-regular overflow-x-hidden">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
             <div
                 ref={navRef}
                 className="relative bg-white rounded-full shadow-lg px-2 py-2 flex gap-1"
@@ -109,6 +113,36 @@ function App() {
                     </button>
                 ))}
             </div>
+        </nav>
+
+        {/* Mobile Navigation */}
+        <nav className="md:hidden fixed top-4 right-4 z-50">
+            <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                aria-label="Toggle menu"
+            >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            {/* Mobile Menu Dropdown */}
+            {isMobileMenuOpen && (
+                <div className="absolute top-16 right-0 bg-white rounded-2xl shadow-2xl p-4 min-w-[200px] animate-fade-in">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab}
+                            onClick={() => scrollToSection(tab)}
+                            className={`w-full text-left px-6 py-3 rounded-xl transition-colors duration-200 ${
+                                activeTab === tab
+                                    ? 'bg-[#91ADC8] text-white'
+                                    : 'text-gray-600 hover:bg-gray-100'
+                            }`}
+                        >
+                            {tab}
+                        </button>
+                    ))}
+                </div>
+            )}
         </nav>
 
 

@@ -383,28 +383,30 @@ const ProjectModal = ({ project, onClose }) => {
     // @ts-ignore
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity duration-300"
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/40 backdrop-blur-sm transition-opacity duration-300"
             onClick={onClose}
         >
             <div
-                className="bg-white w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl p-6 md:p-10 overflow-y-auto transform scale-95 opacity-0 animate-modal-open"
+                className="bg-white w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] rounded-xl shadow-2xl p-4 sm:p-6 md:p-10 overflow-y-auto transform scale-95 opacity-0 animate-modal-open"
                 onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside
             >
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition z-50"
+                    className="absolute top-2 right-2 sm:top-4 sm:right-4 p-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition z-50"
                 >
-                    <X size={24} />
+                    <X size={20} className="sm:hidden" />
+                    <X size={24} className="hidden sm:block" />
                 </button>
 
-                <h2 className="text-3xl font-bold text-[#647FBC] mb-2">{project.title}</h2>
-                <div className="text-sm text-gray-500 mb-6 flex items-center">
-                    <HardHat size={16} className="mr-1"/> Project Details
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#647FBC] mb-2 pr-10">{project.title}</h2>
+                <div className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6 flex items-center">
+                    <HardHat size={14} className="mr-1 sm:hidden"/>
+                    <HardHat size={16} className="mr-1 hidden sm:block"/> Project Details
                 </div>
 
                 {/* Modal Image Slider */}
-                <div className="relative mb-6 h-96 w-full rounded-lg overflow-hidden">
+                <div className="relative mb-4 sm:mb-6 h-48 sm:h-64 md:h-80 lg:h-96 w-full rounded-lg overflow-hidden">
                     <img
                         src={project.images[modalImageIndex]}
                         alt={`${project.title} - Image ${modalImageIndex + 1}`}
@@ -439,22 +441,25 @@ const ProjectModal = ({ project, onClose }) => {
                 </div>
 
                 {/* Tech Stack */}
-                <h3 className="text-xl font-semibold text-[#647FBC] flex items-center mb-3">
-                    <Code size={20} className="mr-2"/> Tech Stack
+                <h3 className="text-lg sm:text-xl font-semibold text-[#647FBC] flex items-center mb-3">
+                    <Code size={18} className="mr-2 sm:hidden"/>
+                    <Code size={20} className="mr-2 hidden sm:block"/> Tech Stack
                 </h3>
                 <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
-                        <span key={index} className="px-3 py-1 bg-[#D3DFE7] text-[#475569] rounded-full text-sm font-medium transition duration-300 hover:bg-[#91ADC8] hover:text-white">
+                        <span key={index} className="px-2 sm:px-3 py-1 bg-[#D3DFE7] text-[#475569] rounded-full text-xs sm:text-sm font-medium transition duration-300 hover:bg-[#91ADC8] hover:text-white">
                             {tech}
                         </span>
                     ))}
                 </div>
 
                 {/* Long Description */}
-                <StyledMarkdown content={project.longDescription}></StyledMarkdown>
+                <div className="text-sm sm:text-base">
+                    <StyledMarkdown content={project.longDescription}></StyledMarkdown>
+                </div>
 
                 {/*  contact  */}
-                <div className="mt-16 text-gray-400">
+                <div className="mt-8 sm:mt-16 text-xs sm:text-sm text-gray-400">
                     For questions or more information, feel free to email to leiahjchen@gmail.com.
                 </div>
             </div>
@@ -495,9 +500,9 @@ const Project: React.FC = () => {
                 `}
             </style>
             <section id="project">
-                <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center justify-center py-16 text-black kaisei-decol-regular p-16 pt-30">
+                <div className="w-full min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12 sm:py-16 text-black kaisei-decol-regular px-4 sm:px-8 md:p-16 pt-20 sm:pt-30">
                     {/*<h1 className="text-4xl font-bold text-[#648194] mb-12">Featured Projects</h1>*/}
-                    <div className="flex flex-wrap gap-16 items-stretch justify-center w-full max-w-6xl px-4">
+                    <div className="flex flex-wrap gap-8 sm:gap-12 md:gap-16 items-stretch justify-center w-full max-w-6xl">
                         {projectsData.map((project) => (
                             <div
                                 key={project.id}
@@ -507,11 +512,11 @@ const Project: React.FC = () => {
                                 <ImageSlider images={project.images} />
 
                                 <div className="flex flex-col flex-grow">
-                                        <div className="text-xl mt-3 mb-2 font-bold text-[#647FBC] lexend-deca-normal">{project.title}</div>
-                                    <div className="text-sm text-gray-700 flex-grow">
+                                        <div className="text-lg sm:text-xl mt-3 mb-2 font-bold text-[#647FBC] lexend-deca-normal">{project.title}</div>
+                                    <div className="text-xs sm:text-sm text-gray-700 flex-grow">
                                         {project.shortDescription}
                                     </div>
-                                    <div className="mt-4 text-sm font-medium text-[#647FBC] flex items-center justify-end">
+                                    <div className="mt-4 text-xs sm:text-sm font-medium text-[#647FBC] flex items-center justify-end">
                                         see how I built it  →
                                     </div>
                                 </div>

@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import mountainmath from '../assets/mountainmath.png'
 import igem from '../assets/igem.png'
-import {Aperture, BookOpen, Briefcase, ChevronRight, Clock, Code, FlaskConical} from "lucide-react";
+import {Aperture, BookOpen, Briefcase, ChevronRight, ChevronDown, ChevronUp, Clock, Code, FlaskConical} from "lucide-react";
 
 const experienceData = [
     {
         title: "Software Engineering Intern",
         company: "MountainMath Software",
-        date: "Feb 2025 - Present",
+        date: "May 2025 - Present",
         type: "Internship",
         details: ["Developed data visualization platform serving 4,000+ users including researchers and government officials for policy decisions and demographic analysis",
             "React, TypeScript, FastAPI, PostgreSQL, Deck.gl"],
@@ -47,29 +47,29 @@ const experienceData = [
         img: null,
         icon: Code,
     },
-    {
-        title: "Coding Instructor",
-        company: "Code Ninjas",
-        date: "Dec 2024 - May 2025",
-        type: "Part-Time",
-        details: ["Instructed students in JavaScript, Python, and Lua in a gamified learning environment"],
-        img: null,
-        icon: Clock,
-    },
-    {
-        title: "EmpowHer Mentor",
-        company: "UBC WiDS",
-        date: "Oct 2024 - Apr 2025",
-        type: "Club",
-        details: ["Mentored first-year students on technical skills and navigating university life"],
-        img: null,
-        icon: BookOpen,
-    },
+    // {
+    //     title: "Coding Instructor",
+    //     company: "Code Ninjas",
+    //     date: "Dec 2024 - May 2025",
+    //     type: "Part-Time",
+    //     details: ["Instructed students in JavaScript, Python, and Lua in a gamified learning environment"],
+    //     img: null,
+    //     icon: Clock,
+    // },
+    // {
+    //     title: "EmpowHer Mentor",
+    //     company: "UBC WiDS",
+    //     date: "Oct 2024 - Apr 2025",
+    //     type: "Club",
+    //     details: ["Mentored first-year students on technical skills and navigating university life"],
+    //     img: null,
+    //     icon: BookOpen,
+    // },
 ];
 
-// Reusable component for the experience card
+// Reusable component for the experience card (Horizontal - Desktop)
 // @ts-ignore
-const ExperienceCard = ({ item, isFirst, getAnimatedClass, index }) => {
+const ExperienceCardHorizontal = ({ item, isFirst, getAnimatedClass, index }) => {
     const IconComponent = item.icon;
     const cardClass = getAnimatedClass(index);
 
@@ -78,9 +78,6 @@ const ExperienceCard = ({ item, isFirst, getAnimatedClass, index }) => {
 
             {/* Timeline Dot & Icon */}
             <div className="relative w-full flex items-center justify-start pt-1">
-                {/* Timeline Dot (Base) */}
-                {/*<div className="w-[18px] h-[18px] bg-white border-4 border-[#D3DFE7] rounded-full z-10"/>*/}
-
                 {/* Icon Container (positioned above the dot) */}
                 <div className="absolute w-[40px] h-[40px] bg-[#91ADC8] rounded-full flex items-center justify-center -translate-x-1/2 top-1 left-5 shadow-md z-20">
                     {item.img ? (
@@ -91,7 +88,7 @@ const ExperienceCard = ({ item, isFirst, getAnimatedClass, index }) => {
                 </div>
             </div>
 
-            {/* Card Content - Improved UI */}
+            {/* Card Content */}
             <div className="flex flex-col justify-start bg-white p-6 rounded-xl w-full shadow-xl border-t-4 border-[#91ADC8] space-y-3 mt-12 transform transition duration-300 hover:shadow-2xl hover:-translate-y-1">
                 <p className="text-xl font-bold text-[#475569]">{item.title}</p>
                 <p className="text-lg text-[#91ADC8]">{item.company}</p>
@@ -105,12 +102,82 @@ const ExperienceCard = ({ item, isFirst, getAnimatedClass, index }) => {
                     <div className="flex flex-col pt-2 space-y-2 text-sm text-gray-700">
                         {item.details.map((detail: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, detailIndex: React.Key | null | undefined) => (
                             <div key={detailIndex} className="flex flex-row items-start space-x-2">
-                                {/* Using ChevronRight for a clean bullet point look */}
                                 <ChevronRight size={14} className="text-[#91ADC8] flex-shrink-0 mt-0.5"/>
                                 <div>{detail}</div>
                             </div>
                         ))}
                     </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+// Reusable component for the experience card (Vertical - Mobile)
+// @ts-ignore
+const ExperienceCardVertical = ({ item, getAnimatedClass, index }) => {
+    const IconComponent = item.icon;
+    const cardClass = getAnimatedClass(index);
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    return (
+        <div key={index} className={`flex flex-row space-x-4 w-full ${cardClass}`}>
+            {/* Timeline Line & Icon */}
+            <div className="flex flex-col items-center">
+                {/* Icon Container */}
+                <div className="w-[40px] h-[40px] bg-[#91ADC8] rounded-full flex items-center justify-center shadow-md flex-shrink-0">
+                    {item.img ? (
+                        <img className="w-[30px] h-[30px] rounded-full object-cover" src={item.img} alt={item.company} />
+                    ) : (
+                        <IconComponent className="w-[20px] h-[20px] text-white"/>
+                    )}
+                </div>
+                {/* Vertical Line */}
+                {index < experienceData.length - 1 && (
+                    <div className="w-[4px] h-full bg-[#D3DFE7] min-h-[100px]"></div>
+                )}
+            </div>
+
+            {/* Card Content */}
+            <div className="flex flex-col justify-start bg-white p-4 sm:p-6 rounded-xl w-full shadow-xl border-l-4 border-[#91ADC8] space-y-2 sm:space-y-3 mb-6">
+                <p className="text-lg sm:text-xl font-bold text-[#475569]">{item.title}</p>
+                <p className="text-base sm:text-lg text-[#91ADC8]">{item.company}</p>
+                <p className="text-[#797979] text-xs sm:text-sm italic">{item.date}</p>
+
+                {/* Type Badge */}
+                <span className="bg-[#EDF6FB] w-fit px-2 sm:px-3 py-1 text-xs rounded-full font-medium text-[#475569] shadow-sm">{item.type}</span>
+
+                {/* Details - Collapsible on Mobile */}
+                {item.details && item.details.length > 0 && (
+                    <>
+                        <button
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className="flex items-center space-x-2 text-[#91ADC8] text-sm font-medium pt-2 hover:text-[#647FBC] transition-colors sm:hidden"
+                        >
+                            <span>{isExpanded ? 'Hide Details' : 'Show Details'}</span>
+                            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        </button>
+
+                        {/* Mobile: Collapsible */}
+                        <div className={`sm:hidden flex flex-col space-y-2 text-xs text-gray-700 overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-96 pt-2' : 'max-h-0'}`}>
+                            {item.details.map((detail: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, detailIndex: React.Key | null | undefined) => (
+                                <div key={detailIndex} className="flex flex-row items-start space-x-2">
+                                    <ChevronRight size={14} className="text-[#91ADC8] flex-shrink-0 mt-0.5"/>
+                                    <div>{detail}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Desktop/Tablet: Always Visible */}
+                        <div className="hidden sm:flex flex-col pt-2 space-y-2 text-sm text-gray-700">
+                            {item.details.map((detail: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, detailIndex: React.Key | null | undefined) => (
+                                <div key={detailIndex} className="flex flex-row items-start space-x-2">
+                                    <ChevronRight size={14} className="text-[#91ADC8] flex-shrink-0 mt-0.5"/>
+                                    <div>{detail}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
                 )}
             </div>
         </div>
@@ -196,35 +263,49 @@ const Experience: React.FC = () => {
                 `}
             </style>
 
-            <div className="w-screen h-screen bg-gray-100 flex items-center justify-start text-black kaisei-decol-regular overflow-x-auto">
-                <div className="flex flex-col space-y-[-26px] items-start ml-6 lg:ml-10 h-1/2 min-w-max pr-40">
+            {/* Desktop Horizontal Timeline */}
+            <div className="hidden lg:block w-full h-screen bg-gray-100 overflow-x-auto text-black kaisei-decol-regular">
+                <div className="flex items-center justify-start h-full">
+                    <div className="flex flex-col space-y-[-26px] items-start ml-6 lg:ml-10 h-1/2 min-w-max pr-40">
+                        {/* Timeline Container (Relative positioning for the bars) */}
+                        <div className="relative w-full">
+                            {/* Base Timeline Bar (Gray Track) */}
+                            <div className="h-[9px] bg-[#D3DFE7] w-full rounded-full"/>
 
-                    {/* Timeline Container (Relative positioning for the bars) */}
-                    <div className="relative w-full">
-                        {/* Base Timeline Bar (Gray Track) */}
-                        <div className="h-[9px] bg-[#D3DFE7] w-full rounded-full"/>
-
-                        {/* Animated Drawing Bar (Blue Track) */}
-                        <div
-                            className={`absolute top-0 h-[9px] bg-[#91ADC8] rounded-full transform origin-left ${hasAnimated ? 'timeline-bar-animate' : ''}`}
-                            style={{ width: TOTAL_TIMELINE_LENGTH }}
-                        />
-                    </div>
-
-                    {/* The main experience content row */}
-                    <div className="space-x-20 flex flex-row h-full justify-start items-center relative z-10">
-
-                        {experienceData.map((item, index) => (
-                            <ExperienceCard
-                                key={index}
-                                item={item}
-                                index={index}
-                                isFirst={index === 0}
-                                getAnimatedClass={getAnimatedClass}
+                            {/* Animated Drawing Bar (Blue Track) */}
+                            <div
+                                className={`absolute top-0 h-[9px] bg-[#91ADC8] rounded-full transform origin-left ${hasAnimated ? 'timeline-bar-animate' : ''}`}
+                                style={{ width: TOTAL_TIMELINE_LENGTH }}
                             />
-                        ))}
+                        </div>
 
+                        {/* The main experience content row */}
+                        <div className="space-x-20 flex flex-row h-full justify-start items-center relative z-10">
+                            {experienceData.map((item, index) => (
+                                <ExperienceCardHorizontal
+                                    key={index}
+                                    item={item}
+                                    index={index}
+                                    isFirst={index === 0}
+                                    getAnimatedClass={getAnimatedClass}
+                                />
+                            ))}
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            {/* Mobile Vertical Timeline */}
+            <div className="lg:hidden w-full min-h-screen bg-gray-100 flex items-center justify-center text-black kaisei-decol-regular py-16 px-4">
+                <div className="flex flex-col w-full max-w-2xl">
+                    {experienceData.map((item, index) => (
+                        <ExperienceCardVertical
+                            key={index}
+                            item={item}
+                            index={index}
+                            getAnimatedClass={getAnimatedClass}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
