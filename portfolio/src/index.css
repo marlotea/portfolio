@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* Design direction F: paper, ink, Nissl-stain violet. */
+@theme {
+    --color-paper: #F4F1EA;
+    --color-ink: #24303C;
+    --color-body: #4A5562;
+    /* Darker than the #8A8F96 reference so small mono text passes WCAG AA on paper. */
+    --color-muted: #686D75;
+    --color-violet: #6F5AA8;
+    --color-navy: #4E68A8;
+    --color-tint-navy: #E4ECF0;
+    --color-tint-violet: #E9E3F3;
+
+    --font-kaisei: "Kaisei Decol", serif;
+    --font-serif: "Instrument Serif", serif;
+    --font-mono: "DM Mono", ui-monospace, monospace;
+}
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-body);
+    font-family: var(--font-kaisei);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background: color-mix(in srgb, var(--color-violet) 22%, transparent);
+    color: var(--color-ink);
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-violet);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Hairline rule: ink at ~14%. */
+.hairline {
+    border-color: color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+.serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Emphasized phrases inside copy. */
+.em {
+    font-weight: 500;
+    color: var(--color-ink);
+}
+
+.text-link {
+    color: var(--color-navy);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.text-link:hover {
+    color: var(--color-violet);
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
