@@ -17,8 +17,9 @@
     --font-mono: "DM Mono", ui-monospace, monospace;
 }
 
+/* clip, not hidden: hidden makes body a scroll container and breaks the sticky hero */
 html, body {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
 }
 
@@ -77,10 +78,11 @@ body {
 
 /* ---------- Layout components ---------- */
 
-@media (min-width: 1024px) and (min-height: 760px) {
+/* min-height = hero height (~690px) + top offset, so the pinned hero is never cut off */
+@media (min-width: 1024px) and (min-height: 780px) {
     .hero-sticky {
         position: sticky;
-        top: 100px;
+        top: 80px;
     }
 }
 
