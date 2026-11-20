@@ -149,6 +149,127 @@ body {
     overflow: hidden;
 }
 
+/* ---------- Writing ---------- */
+
+.post-row:hover .post-title {
+    color: var(--color-violet);
+}
+
+.post-body {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--color-body);
+}
+
+.post-body > * + * {
+    margin-top: 1.1em;
+}
+
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-ink);
+    line-height: 1.2;
+    margin-top: 1.8em;
+}
+
+.post-body h2 { font-size: 30px; }
+.post-body h3 { font-size: 24px; }
+.post-body h4 { font-size: 20px; }
+
+.post-body strong {
+    font-weight: 500;
+    color: var(--color-ink);
+}
+
+.post-body a {
+    color: var(--color-navy);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.post-body a:hover {
+    color: var(--color-violet);
+}
+
+.post-body ul,
+.post-body ol {
+    padding-left: 1.3em;
+}
+
+.post-body ul { list-style: "— "; }
+.post-body ol { list-style: decimal; }
+
+.post-body li + li {
+    margin-top: 0.3em;
+}
+
+.post-body blockquote {
+    border-left: 2px solid var(--color-violet);
+    padding-left: 1em;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--color-ink);
+}
+
+.post-body code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background: color-mix(in srgb, var(--color-violet) 9%, transparent);
+    color: var(--color-ink);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+}
+
+.post-body pre {
+    overflow-x: auto;
+    padding: 1em 1.1em;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-ink) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+    line-height: 1.6;
+}
+
+.post-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.post-body hr {
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+.post-body table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.post-body th,
+.post-body td {
+    text-align: left;
+    padding: 0.5em 0.6em;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+.post-body th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--color-muted);
+}
+
+.post-body img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
