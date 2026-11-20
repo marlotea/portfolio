@@ -270,6 +270,10 @@ body {
     border-radius: 8px;
 }
 
+/* ---------- Motion ----------
+   Everything below only runs when the user hasn't asked for reduced motion;
+   the un-animated defaults above are the final, fully visible state. */
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -278,5 +282,81 @@ body {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes ringDraw {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes ringBreathe {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.018); opacity: 0.78; }
+}
+
+@keyframes calloutIn {
+    from { opacity: 0; transform: translateX(-6px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    /* Hero contours: draw outward ring by ring, then breathe slowly. */
+    .ring {
+        stroke-dasharray: 1;
+        animation:
+            ringDraw 1.2s cubic-bezier(0.45, 0, 0.2, 1) calc(var(--k) * 80ms) both,
+            ringBreathe 16s ease-in-out calc(1.6s + var(--k) * 0.7s) infinite;
+    }
+
+    /* Leader lines + labels after the rings, a -> b -> c. */
+    .callout {
+        animation: calloutIn 0.6s ease-out calc(1.2s + var(--i) * 180ms) both;
+    }
+
+    /* Section heading rule draws left -> right once in view. */
+    .reveal .section-rule {
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.9s cubic-bezier(0.45, 0, 0.2, 1) 0.15s;
+    }
+
+    .reveal.is-in .section-rule {
+        transform: scaleX(1);
+    }
+
+    /* List items fade up with a stagger once their section is in view. */
+    .reveal:not(.is-in) .reveal-item {
+        opacity: 0;
+    }
+
+    .reveal.is-in .reveal-item {
+        animation: fadeInUp 0.6s ease-out calc(150ms + var(--i, 0) * 90ms) both;
+    }
+
+    .project-card,
+    .card-arrow {
+        transition: transform 0.25s ease;
+    }
+
+    .project-card:hover,
+    .project-card:focus-visible {
+        transform: translateY(-2px);
+    }
+
+    .project-card:hover .card-arrow,
+    .project-card:focus-visible .card-arrow {
+        transform: translate(2px, -2px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .accordion,
+    .toggle > span {
+        transition: none;
     }
 }
