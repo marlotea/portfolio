@@ -37,6 +37,10 @@ export default function Experience() {
                                     <span className="serif-italic mt-0.5 block text-[17px] leading-snug text-navy">
                                         @ {item.org}
                                     </span>
+                                    <span className="mt-1.5 block truncate font-mono text-[10px] text-muted">
+                                        <span className="sr-only">Tags: </span>
+                                        {item.tags.join(' · ')}
+                                    </span>
                                 </span>
                                 <span className="flex shrink-0 flex-col items-end gap-2 pt-1">
                                     <span className={`toggle ${isOpen ? 'is-open' : ''}`} aria-hidden="true">
@@ -58,17 +62,7 @@ export default function Experience() {
                         >
                             <div className="accordion-inner">
                                 <div className="pb-5">
-                                    <ul className="flex flex-wrap gap-1.5" aria-label="Tags">
-                                        {item.tags.map((t) => (
-                                            <li
-                                                key={t}
-                                                className="rounded bg-violet/9 px-2 py-0.5 font-mono text-[10px] text-violet"
-                                            >
-                                                {t}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <p className="mt-3 text-[15px] leading-[1.7] text-body">
+                                    <p className="text-[15px] leading-[1.7] text-body">
                                         <Rich text={item.description} />
                                     </p>
                                     {item.also && (
