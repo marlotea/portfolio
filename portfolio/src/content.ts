@@ -29,7 +29,6 @@ export const callouts: Callout[] = [
 export const profile: string[] = [
     "I'm a 4th-year CS student at UBC looking for a **software engineering internship in Summer or Fall 2027**.",
     'I build software for brain data, from tools for neural data management, processing, and training, to embedded firmware for prosthetics that reads signals to ML pipelines. I also develop for **nwPlus** and **UBC Bionics**. I want to work on the **software side of brain-computer interfaces**.',
-    `Projects and experiences below, and my resume is [here](${RESUME_URL}). Reach me at [${EMAIL}](mailto:${EMAIL}).`,
 ];
 
 export type LinkIcon = 'linkedin' | 'github' | 'resume' | 'email';
@@ -112,7 +111,7 @@ export const projects: ProjectItem[] = [
     {
         id: 'agent-process-manager',
         title: 'agent process manager',
-        description: 'TODO: one-line description.', // TODO: write the real one-line description
+        description: "A Rust daemon that manages agents' resource usage.",
         href: undefined, // TODO: add the agent process manager project link
         tint: 'violet',
     },
