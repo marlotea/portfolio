@@ -75,6 +75,80 @@ body {
     color: var(--color-violet);
 }
 
+/* ---------- Layout components ---------- */
+
+@media (min-width: 1024px) and (min-height: 760px) {
+    .hero-sticky {
+        position: sticky;
+        top: 100px;
+    }
+}
+
+.callout-text {
+    paint-order: stroke;
+    stroke: var(--color-paper);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+}
+
+.nav-link {
+    color: var(--color-ink);
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+    color: var(--color-violet);
+}
+
+.nav-link.is-active {
+    border-bottom-color: var(--color-violet);
+}
+
+/* +/- toggle: the vertical bar rotates flat to turn + into −. */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    color: var(--color-violet);
+}
+
+.toggle > span {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 11px;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.toggle > span:last-child {
+    transform: rotate(90deg);
+}
+
+.toggle.is-open > span:last-child {
+    transform: rotate(0deg);
+}
+
+.accordion {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+}
+
+.accordion.is-open {
+    grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
