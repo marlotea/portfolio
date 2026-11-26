@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { posts, WRITING_HREF } from './blog.ts';
+import { getPost, posts, WRITING_HREF } from './blog.ts';
 import Experience from './components/Experience.tsx';
 import Footer from './components/Footer.tsx';
 import Hero from './components/Hero.tsx';
@@ -31,9 +31,11 @@ function Home() {
                     <div className="hairline border-t">
                         <PostList items={posts.slice(0, 3)} />
                     </div>
-                    <a href={WRITING_HREF} className="mt-4 inline-block font-mono text-[11px] text-navy hover:text-violet">
-                        All posts →
-                    </a>
+                    {posts.length > 0 && (
+                        <a href={WRITING_HREF} className="mt-4 inline-block font-mono text-[11px] text-navy hover:text-violet">
+                            All posts →
+                        </a>
+                    )}
                 </Section>
             </div>
         </div>
@@ -44,14 +46,14 @@ function App() {
     const hash = useHash();
     const route = parseHash(hash);
     const isHome = route.name === 'home';
-    const anchor = route.name === 'home' ? route.anchor : null;
+    const anchor = route.name === 'home' || route.name === 'post' ? route.anchor : null;
     const active = useActiveSection(
         sections.map((s) => s.id),
         isHome,
     );
 
     // Hash routing replaces the browser's own anchor scrolling when the target
-    // only exists after the route renders (e.g. Post -> #projects).
+    // only exists after the route renders (e.g. Post -> #projects, or a post's section).
     useEffect(() => {
         const el = anchor ? document.getElementById(anchor) : null;
         if (el) el.scrollIntoView();
@@ -61,7 +63,7 @@ function App() {
     useEffect(() => {
         document.title =
             route.name === 'post'
-                ? `${posts.find((p) => p.slug === route.slug)?.title ?? 'Post'} · ${site.name}`
+                ? `${getPost(route.slug)?.title ?? 'Post'} · ${site.name}`
                 : route.name === 'writing'
                   ? `Writing · ${site.name}`
                   : site.name;

@@ -76,6 +76,20 @@ body {
     color: var(--color-violet);
 }
 
+/* Org names in experience rows: quiet underline that firms up on hover. */
+.org-link {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.org-link:hover {
+    color: var(--color-violet);
+    text-decoration-color: currentColor;
+}
+
 /* ---------- Layout components ---------- */
 
 /* min-height = hero height (~690px) + top offset, so the pinned hero is never cut off */
@@ -178,6 +192,10 @@ body {
     margin-top: 1.8em;
 }
 
+.post-body > :first-child {
+    margin-top: 0;
+}
+
 .post-body h2 { font-size: 30px; }
 .post-body h3 { font-size: 24px; }
 .post-body h4 { font-size: 20px; }
@@ -267,9 +285,35 @@ body {
     color: var(--color-muted);
 }
 
-.post-body img {
+.post-body img,
+.post-body video {
+    display: block;
     max-width: 100%;
     border-radius: 8px;
+}
+
+.post-body video {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--color-tint-violet);
+    border: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+/* Post side navigation: the active section's rule turns violet. */
+.toc-link {
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    color: var(--color-muted);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.toc-link:hover {
+    color: var(--color-ink);
+}
+
+.toc-link.is-active {
+    color: var(--color-violet);
+    border-left-color: var(--color-violet);
 }
 
 /* ---------- Motion ----------

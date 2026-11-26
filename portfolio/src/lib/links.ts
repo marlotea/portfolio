@@ -1,7 +1,4 @@
-export function isExternal(href: string) {
-    return /^https?:\/\//.test(href);
-}
-
+/** Off-site links and PDFs open in a new tab. */
 export function externalProps(href: string) {
-    return isExternal(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+    return /^https?:\/\//.test(href) || /\.pdf$/i.test(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 }

@@ -28,7 +28,7 @@ export const callouts: Callout[] = [
 
 export const profile: string[] = [
     "I'm a 4th-year CS student at UBC looking for a **software engineering internship in Summer or Fall 2027**.",
-    'I build software for brain data, from tools for neural data management, processing, and training, to embedded firmware for prosthetics that reads signals to ML pipelines. I also develop for **nwPlus** and **UBC Bionics**. I want to work on the **software side of brain-computer interfaces**.',
+    'I build software for brain data, from tools for neural data management, processing, and training, to embedded firmware for prosthetics that reads signals to ML pipelines. I also develop for [nwPlus](#exp-nwplus) and [UBC Bionics](#exp-bionics). I want to work on the **software side of brain-computer interfaces**.',
 ];
 
 export type LinkIcon = 'linkedin' | 'github' | 'resume' | 'email';
@@ -50,7 +50,10 @@ export type ExperienceItem = {
     id: string;
     role: string;
     org: string;
+    /** Organization website; the org name links here. */
+    orgHref?: string;
     date: string;
+    kind: 'Lab' | 'Club' | 'Internship';
     tags: string[];
     description: string;
     also?: string[];
@@ -61,6 +64,8 @@ export const experience: ExperienceItem[] = [
         id: 'nc4',
         role: 'Undergraduate Researcher',
         org: 'NC4 Lab',
+        orgHref: 'https://www.nc4.sbme.ubc.ca/',
+        kind: 'Lab',
         date: 'Sep 2026 — Present',
         tags: ['Computational Neuroscience', 'Kernel Compute'],
         description:
@@ -73,19 +78,33 @@ export const experience: ExperienceItem[] = [
         id: 'nwplus',
         role: 'Software Developer',
         org: 'nwPlus',
+        orgHref: 'https://nwplus.io/',
+        kind: 'Club',
         date: 'Apr 2026 — Present',
         tags: ['TypeScript', 'CI/CD', 'Agentic Workflow'],
         description:
-            "Hosting Western Canada's premier hackathons. Led **Hacker Wrapped** — a personalized review of every participant's experience at the end of the hackathon, for 600+ participants, to promote hacker–event connections.",
+            "Hosting Western Canada's premier hackathons. Led [Hacker Wrapped](#/writing/hacker-wrapped) — a personalized review of every participant's experience at the end of the hackathon, for 1000+ participants, to promote hacker–event connections.",
     },
     {
         id: 'bionics',
         role: 'Software Team Member',
         org: 'UBC Bionics',
+        orgHref: 'https://www.ubcbionics.com/',
+        kind: 'Club',
         date: 'Jan 2026 — Present',
         tags: ['Machine Learning', 'Deep Learning'],
         description:
-            'Built and launched an internal neural data management tool for preprocessing, training, and evaluation for **NERV** (brain-computer interface project), adopted from my personal project, using TypeScript and Python. Implemented a Real-Time Operating System (RTOS) for **GRASP** (arm prosthetics project), plus the pipeline and model for signal decoding and decision making.',
+            'Built and launched an internal neural data management tool for preprocessing, training, and evaluation for [NERV](https://www.ubcbionics.com/projects) (brain-computer interface project), adopted from my personal project, using TypeScript and Python. Implemented a Real-Time Operating System (RTOS) for [GRASP](https://www.ubcbionics.com/projects) (arm prosthetics project), plus the pipeline and model for signal decoding and decision making.',
+    },
+    {
+        id: 'mountainmath',
+        role: 'Software Development Intern',
+        org: 'MountainMath Software',
+        kind: 'Internship',
+        date: 'Sep 2025 — Apr 2026',
+        tags: ['TypeScript', 'FastAPI', 'PostgreSQL', 'nginx'],
+        description:
+            'Developed and launched **CensusMapper 2.0**, an interactive web mapping tool that visualizes Statistics Canada census data, serving 10k+ users.',
     },
 ];
 
@@ -98,6 +117,8 @@ export type ProjectItem = {
     image?: string;
     imageAlt?: string;
     tint: 'navy' | 'violet';
+    /** Slug of a writing post about the project, shown as a secondary link under the card. */
+    post?: string;
 };
 
 export const projects: ProjectItem[] = [
@@ -105,15 +126,32 @@ export const projects: ProjectItem[] = [
         id: 'lazarus',
         title: 'lazarus',
         description: 'Neural data management platform.',
-        href: undefined, // TODO: add the lazarus project link
+        href: 'https://github.com/marlotea/lazarus',
         tint: 'navy',
     },
     {
-        id: 'agent-process-manager',
-        title: 'agent process manager',
-        description: "A Rust daemon that manages agents' resource usage.",
-        href: undefined, // TODO: add the agent process manager project link
+        id: 'seigyo',
+        title: 'seigyo',
+        description: 'Agent process manager with Rust',
+        href: 'https://github.com/KentoBaguetti/seigyo',
         tint: 'violet',
+    },
+    {
+        id: 'hacker-wrapped',
+        title: 'Hacker Wrapped',
+        description: 'Spotify Wrapped, but for hackathons',
+        href: '#/writing/hacker-wrapped',
+        tint: 'navy',
+    },
+    {
+        id: 'neuro-job-notifier',
+        title: 'neuro job notifier',
+        description: 'Job searching, newsletter & list tool',
+        href: 'https://marlotea.github.io/neuro-job-notifier/',
+        image: 'writing/neuro-job-notifier.jpg',
+        imageAlt: 'The Neuro Jobs site: a list of open neurotech roles beside search and role-type filters',
+        tint: 'violet',
+        post: 'enjoying-the-process-of-things',
     },
 ];
 
@@ -122,5 +160,3 @@ export const sections = [
     { id: 'projects', num: '02', title: 'Projects' },
     { id: 'writing', num: '03', title: 'Writing' },
 ] as const;
-
-export type SectionId = (typeof sections)[number]['id'];

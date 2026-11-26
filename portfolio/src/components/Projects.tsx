@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { getPost, postHref } from '../blog.ts';
 import { projects, type ProjectItem } from '../content.ts';
 import { externalProps } from '../lib/links.ts';
 import Contours from './Contours.tsx';
@@ -45,7 +46,7 @@ export default function Projects() {
     return (
         <ul className="grid gap-8 lg:grid-cols-2 lg:gap-6">
             {projects.map((p, i) => {
-                const isPlaceholder = p.description.startsWith('TODO');
+                const post = p.post ? getPost(p.post) : undefined;
                 const body = (
                     <>
                         <Thumbnail project={p} />
@@ -53,15 +54,7 @@ export default function Projects() {
                             <h3 className="text-lg leading-snug font-medium text-ink">{p.title}</h3>
                             <ArrowUpRight size={16} className="card-arrow text-violet" aria-hidden="true" />
                         </div>
-                        <p
-                            className={
-                                isPlaceholder
-                                    ? 'mt-1 font-mono text-[12px] text-muted italic'
-                                    : 'mt-1 text-[15px] leading-relaxed text-body'
-                            }
-                        >
-                            {p.description}
-                        </p>
+                        <p className="mt-1 text-[15px] leading-relaxed text-body">{p.description}</p>
                     </>
                 );
                 return (
@@ -72,6 +65,15 @@ export default function Projects() {
                             </a>
                         ) : (
                             <div className="project-card">{body}</div>
+                        )}
+                        {/* Outside the card: a link can't be nested inside the card's link. */}
+                        {post && (
+                            <a
+                                href={postHref(post.slug)}
+                                className="mt-2 inline-block font-mono text-[11px] text-navy hover:text-violet"
+                            >
+                                Read: {post.title} →
+                            </a>
                         )}
                     </li>
                 );

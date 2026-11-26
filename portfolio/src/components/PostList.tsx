@@ -3,7 +3,7 @@ import { formatDate, postHref, type Post } from '../blog.ts';
 
 export default function PostList({ items, showSummary = false }: { items: Post[]; showSummary?: boolean }) {
     if (items.length === 0) {
-        return <p className="font-mono text-xs text-muted">No posts yet.</p>;
+        return <p className="py-3.5 font-mono text-xs text-muted">Coming soon!</p>;
     }
     return (
         <ul>
