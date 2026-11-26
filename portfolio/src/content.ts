@@ -84,17 +84,21 @@ export const experience: ExperienceItem[] = [
         tags: ['TypeScript', 'CI/CD', 'Agentic Workflow'],
         description:
             "Hosting Western Canada's premier hackathons. Led [Hacker Wrapped](#/writing/hacker-wrapped) — a personalized review of every participant's experience at the end of the hackathon, for 1000+ participants, to promote hacker–event connections.",
+        also: ['Managing internal and external tools.'],
     },
     {
         id: 'bionics',
-        role: 'Software Team Member',
+        role: 'Software Developer',
         org: 'UBC Bionics',
         orgHref: 'https://www.ubcbionics.com/',
         kind: 'Club',
         date: 'Jan 2026 — Present',
         tags: ['Machine Learning', 'Deep Learning'],
         description:
-            'Built and launched an internal neural data management tool for preprocessing, training, and evaluation for [NERV](https://www.ubcbionics.com/projects) (brain-computer interface project), adopted from my personal project, using TypeScript and Python. Implemented a Real-Time Operating System (RTOS) for [GRASP](https://www.ubcbionics.com/projects) (arm prosthetics project), plus the pipeline and model for signal decoding and decision making.',
+            'Built internal neural data management tool for [NERV](https://www.ubcbionics.com/projects) (brain-computer interface project).',
+        also: [
+            'Manage [GRASP](https://www.ubcbionics.com/projects) (arm prosthetics project) firmware and design EMG signal to motor decision model.',
+        ],
     },
     {
         id: 'mountainmath',

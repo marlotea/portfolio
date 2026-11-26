@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react';
-import { experience } from '../content.ts';
+import { RESUME_URL, experience } from '../content.ts';
 import { externalProps } from '../lib/links.ts';
 import Rich from './Rich.tsx';
 
@@ -63,102 +63,111 @@ export default function Experience() {
     }, []);
 
     return (
-        <ul className="hairline border-t">
-            {experience.map((item, i) => {
-                const isOpen = open[item.id];
-                const panelId = `exp-${item.id}-panel`;
-                const buttonId = `exp-${item.id}-button`;
-                return (
-                    <li
-                        key={item.id}
-                        id={experienceAnchor(item.id)}
-                        className="reveal-item hairline border-b"
-                        style={{ '--i': i } as CSSProperties}
-                    >
-                        {/* The button's ::after stretches over the whole row so it toggles from anywhere,
-                            while the org link sits above it (a link can't be nested inside a button). */}
-                        <div className="relative flex items-start justify-between gap-4 py-4">
-                            <div className="min-w-0">
-                                <h3>
-                                    <button
-                                        id={buttonId}
-                                        type="button"
-                                        aria-expanded={isOpen}
-                                        aria-controls={panelId}
-                                        onClick={() => toggle(item.id)}
-                                        className="block cursor-pointer text-left text-base leading-snug text-ink after:absolute after:inset-0 after:rounded focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-violet lg:text-[17px]"
-                                    >
-                                        {item.role}
-                                        <span className="sr-only"> at {item.org}</span>
-                                    </button>
-                                </h3>
-                                <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1">
-                                    <span className="serif-italic text-[17px] leading-snug text-navy">
-                                        @{' '}
-                                        {item.orgHref ? (
-                                            <a
-                                                href={item.orgHref}
-                                                {...externalProps(item.orgHref)}
-                                                className="org-link relative z-10"
-                                            >
-                                                {item.org}
-                                            </a>
-                                        ) : (
-                                            item.org
-                                        )}
-                                    </span>
-                                    <span className="rounded bg-violet/9 px-2 py-0.5 font-mono text-[10px] text-violet">
-                                        {item.kind}
-                                    </span>
-                                </span>
-                                <span className="mt-1.5 block truncate font-mono text-[10px] text-muted">
-                                    <span className="sr-only">Tags: </span>
-                                    {item.tags.join(' · ')}
-                                </span>
-                            </div>
-                            <div className="flex shrink-0 flex-col items-end gap-2 pt-1">
-                                <span className={`toggle ${isOpen ? 'is-open' : ''}`} aria-hidden="true">
-                                    <span />
-                                    <span />
-                                </span>
-                                <span className="font-mono text-[10px] whitespace-nowrap text-muted">{item.date}</span>
-                            </div>
-                        </div>
-                        <div
-                            id={panelId}
-                            role="region"
-                            aria-labelledby={buttonId}
-                            inert={!isOpen}
-                            className={`accordion ${isOpen ? 'is-open' : ''}`}
+        <>
+            <a
+                href={RESUME_URL}
+                {...externalProps(RESUME_URL)}
+                className="mb-4 inline-block font-mono text-[11px] text-navy hover:text-violet"
+            >
+                See resume for full details →
+            </a>
+            <ul className="hairline border-t">
+                {experience.map((item, i) => {
+                    const isOpen = open[item.id];
+                    const panelId = `exp-${item.id}-panel`;
+                    const buttonId = `exp-${item.id}-button`;
+                    return (
+                        <li
+                            key={item.id}
+                            id={experienceAnchor(item.id)}
+                            className="reveal-item hairline border-b"
+                            style={{ '--i': i } as CSSProperties}
                         >
-                            <div className="accordion-inner">
-                                <div className="pb-5">
-                                    <p className="text-[15px] leading-[1.7] text-body">
-                                        <Rich text={item.description} />
-                                    </p>
-                                    {item.also && (
-                                        <div className="mt-3">
-                                            <p className="font-mono text-[10px] tracking-wider text-muted uppercase">
-                                                Also
-                                            </p>
-                                            <ul className="mt-1 space-y-1">
-                                                {item.also.map((a, j) => (
-                                                    <li key={j} className="flex gap-2 text-[15px] leading-[1.7] text-body">
-                                                        <span aria-hidden="true">—</span>
-                                                        <span>
-                                                            <Rich text={a} />
-                                                        </span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
+                            {/* The button's ::after stretches over the whole row so it toggles from anywhere,
+                                while the org link sits above it (a link can't be nested inside a button). */}
+                            <div className="relative flex items-start justify-between gap-4 py-4">
+                                <div className="min-w-0">
+                                    <h3>
+                                        <button
+                                            id={buttonId}
+                                            type="button"
+                                            aria-expanded={isOpen}
+                                            aria-controls={panelId}
+                                            onClick={() => toggle(item.id)}
+                                            className="block cursor-pointer text-left text-base leading-snug text-ink after:absolute after:inset-0 after:rounded focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-violet lg:text-[17px]"
+                                        >
+                                            {item.role}
+                                            <span className="sr-only"> at {item.org}</span>
+                                        </button>
+                                    </h3>
+                                    <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+                                        <span className="serif-italic text-[17px] leading-snug text-navy">
+                                            @{' '}
+                                            {item.orgHref ? (
+                                                <a
+                                                    href={item.orgHref}
+                                                    {...externalProps(item.orgHref)}
+                                                    className="org-link relative z-10"
+                                                >
+                                                    {item.org}
+                                                </a>
+                                            ) : (
+                                                item.org
+                                            )}
+                                        </span>
+                                        <span className="rounded bg-violet/9 px-2 py-0.5 font-mono text-[10px] text-violet">
+                                            {item.kind}
+                                        </span>
+                                    </span>
+                                    <span className="mt-1.5 block truncate font-mono text-[10px] text-muted">
+                                        <span className="sr-only">Tags: </span>
+                                        {item.tags.join(' · ')}
+                                    </span>
+                                </div>
+                                <div className="flex shrink-0 flex-col items-end gap-2 pt-1">
+                                    <span className={`toggle ${isOpen ? 'is-open' : ''}`} aria-hidden="true">
+                                        <span />
+                                        <span />
+                                    </span>
+                                    <span className="font-mono text-[10px] whitespace-nowrap text-muted">{item.date}</span>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                );
-            })}
-        </ul>
+                            <div
+                                id={panelId}
+                                role="region"
+                                aria-labelledby={buttonId}
+                                inert={!isOpen}
+                                className={`accordion ${isOpen ? 'is-open' : ''}`}
+                            >
+                                <div className="accordion-inner">
+                                    <div className="pb-5">
+                                        <p className="text-[15px] leading-[1.7] text-body">
+                                            <Rich text={item.description} />
+                                        </p>
+                                        {item.also && (
+                                            <div className="mt-3">
+                                                <p className="font-mono text-[10px] tracking-wider text-muted uppercase">
+                                                    Also
+                                                </p>
+                                                <ul className="mt-1 space-y-1">
+                                                    {item.also.map((a, j) => (
+                                                        <li key={j} className="flex gap-2 text-[15px] leading-[1.7] text-body">
+                                                            <span aria-hidden="true">—</span>
+                                                            <span>
+                                                                <Rich text={a} />
+                                                            </span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    );
+                })}
+            </ul>
+        </>
     );
 }
