@@ -1,158 +1,96 @@
-import { useState, useRef, useEffect } from 'react'
-import './App.css'
-import Home from "./components/Home.tsx";
-import About from "./components/About.tsx";
-import Project from "./components/Project.tsx";
-import Experience from "./components/Experience.tsx";
+import { useEffect } from 'react';
+import { getPost, posts, WRITING_HREF } from './blog.ts';
+import Experience from './components/Experience.tsx';
 import Footer from './components/Footer.tsx';
-import { Menu, X } from 'lucide-react';
+import Hero from './components/Hero.tsx';
+import PostList from './components/PostList.tsx';
+import Projects from './components/Projects.tsx';
+import Section from './components/Section.tsx';
+import TopBar from './components/TopBar.tsx';
+import { PostPage, WritingIndex } from './components/WritingPages.tsx';
+import { sections, site } from './content.ts';
+import { useActiveSection } from './lib/useActiveSection.ts';
+import { parseHash, useHash } from './lib/useHashRoute.ts';
 
-function App() {
-    const [activeTab, setActiveTab] = useState('Home');
-    const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const navRef = useRef(null);
-    const tabRefs = useRef({});
+const [EXPERIENCE, PROJECTS, WRITING] = sections;
 
-    const tabs = ['Home', 'About', 'Project', 'Experience'];
-
-    useEffect(() => {
-        const updateIndicator = () => {
-            // @ts-ignore
-            const activeElement = tabRefs.current[activeTab];
-            if (activeElement && navRef.current) {
-                // @ts-ignore
-                const navRect = navRef.current.getBoundingClientRect();
-                const tabRect = activeElement.getBoundingClientRect();
-                setIndicatorStyle({
-                    left: tabRect.left - navRect.left,
-                    width: tabRect.width
-                });
-            }
-        };
-
-        updateIndicator();
-        window.addEventListener('resize', updateIndicator);
-        return () => window.removeEventListener('resize', updateIndicator);
-    }, [activeTab]);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const sections = tabs.map(tab => ({
-                id: tab,
-                element: document.getElementById(tab.toLowerCase())
-            }));
-
-            const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = sections[i];
-                if (section.element) {
-                    const offsetTop = section.element.offsetTop;
-                    if (scrollPosition >= offsetTop) {
-                        setActiveTab(section.id);
-                        break;
-                    }
-                }
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [tabs]);
-
-    // @ts-ignore
-    const scrollToSection = (tab) => {
-        setActiveTab(tab);
-        setIsMobileMenuOpen(false);
-        const element = document.getElementById(tab.toLowerCase());
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-        // @ts-ignore
-    // @ts-ignore
+function Home() {
     return (
-    <div className="kaisei-decol-regular overflow-x-hidden">
-        {/* Desktop Navigation */}
-        <nav className="hidden md:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
-            <div
-                ref={navRef}
-                className="relative bg-white rounded-full shadow-lg px-2 py-2 flex gap-1"
-            >
-                <div
-                    className="absolute bg-[#91ADC8] rounded-full transition-all duration-300 ease-out pointer-events-none"
-                    style={{
-                        left: `${indicatorStyle.left}px`,
-                        width: `${indicatorStyle.width}px`,
-                        top: '8px',
-                        bottom: '8px'
-                    }}
-                />
-
-                {tabs.map((tab) => (
-                    <button
-                        key={tab}
-                        ref={(el) => {
-                            if (el) {
-                                // @ts-ignore
-                                tabRefs.current[tab] = el;
-                            }
-                        }}
-                        onClick={() => scrollToSection(tab)}
-                        className={`relative z-10 px-6 py-2 text-sm font-medium transition-colors duration-300 border-0 bg-transparent outline-none ${
-                            activeTab === tab
-                                ? 'text-white'
-                                : 'text-gray-600 hover:text-gray-400'
-                        }`}
-                        style={{ WebkitAppearance: 'none', appearance: 'none' }}
-                    >
-                        {tab}
-                    </button>
-                ))}
+        <div className="lg:grid lg:grid-cols-[minmax(0,540fr)_minmax(0,560fr)] lg:gap-[clamp(40px,7vw,100px)]">
+            <div>
+                <Hero />
             </div>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <nav className="md:hidden fixed top-4 right-4 z-50">
-            <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow"
-                aria-label="Toggle menu"
-            >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-
-            {/* Mobile Menu Dropdown */}
-            {isMobileMenuOpen && (
-                <div className="absolute top-16 right-0 bg-white rounded-2xl shadow-2xl p-4 min-w-[200px] animate-fade-in">
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => scrollToSection(tab)}
-                            className={`w-full text-left px-6 py-3 rounded-xl transition-colors duration-200 ${
-                                activeTab === tab
-                                    ? 'bg-[#91ADC8] text-white'
-                                    : 'text-gray-600 hover:bg-gray-100'
-                            }`}
-                        >
-                            {tab}
-                        </button>
-                    ))}
-                </div>
-            )}
-        </nav>
-
-
-        <Home></Home>
-        <About></About>
-        <Project></Project>
-        <Experience></Experience>
-        <Footer></Footer>
-    </div>
-  )
+            <div className="mt-16 space-y-16 lg:mt-0">
+                <Section {...EXPERIENCE}>
+                    <Experience />
+                </Section>
+                <Section {...PROJECTS}>
+                    <Projects />
+                </Section>
+                <Section {...WRITING}>
+                    <div className="hairline border-t">
+                        <PostList items={posts.slice(0, 3)} />
+                    </div>
+                    {posts.length > 0 && (
+                        <a href={WRITING_HREF} className="mt-4 inline-block font-mono text-[11px] text-navy hover:text-violet">
+                            All posts →
+                        </a>
+                    )}
+                </Section>
+            </div>
+        </div>
+    );
 }
 
-export default App
+function App() {
+    const hash = useHash();
+    const route = parseHash(hash);
+    const isHome = route.name === 'home';
+    const anchor = route.name === 'home' || route.name === 'post' ? route.anchor : null;
+    const active = useActiveSection(
+        sections.map((s) => s.id),
+        isHome,
+    );
+
+    // Hash routing replaces the browser's own anchor scrolling when the target
+    // only exists after the route renders (e.g. Post -> #projects, or a post's section).
+    useEffect(() => {
+        const el = anchor ? document.getElementById(anchor) : null;
+        if (el) el.scrollIntoView();
+        else window.scrollTo(0, 0);
+    }, [hash, anchor]);
+
+    useEffect(() => {
+        document.title =
+            route.name === 'post'
+                ? `${getPost(route.slug)?.title ?? 'Post'} · ${site.name}`
+                : route.name === 'writing'
+                  ? `Writing · ${site.name}`
+                  : site.name;
+    });
+
+    return (
+        <div className="min-h-screen bg-paper">
+            <a
+                href="#main"
+                onClick={(e) => {
+                    // Plain #main would be treated as a home-page anchor by the hash router.
+                    e.preventDefault();
+                    document.getElementById('main')?.focus();
+                }}
+                className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-ink focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:text-paper"
+            >
+                Skip to content
+            </a>
+            <TopBar active={active} />
+            <main id="main" tabIndex={-1} className="mx-auto outline-none max-w-[1248px] px-6 pt-8 lg:pt-14">
+                {route.name === 'home' && <Home />}
+                {route.name === 'writing' && <WritingIndex />}
+                {route.name === 'post' && <PostPage slug={route.slug} />}
+                <Footer />
+            </main>
+        </div>
+    );
+}
+
+export default App;
