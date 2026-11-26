@@ -1,8 +1,8 @@
 // All editable site copy lives here.
 // Inline markup in strings: **bold** renders as emphasized text, [label](url) renders as a link.
 
-// TODO: replace with the real resume URL (e.g. a PDF in /public) once it exists.
-export const RESUME_URL = '#';
+// The PDF lives at public/Leia_Chen_Resume.pdf. Relative (no leading slash) so it works under any base path.
+export const RESUME_URL = 'Leia_Chen_Resume.pdf';
 
 export const EMAIL = 'leiahjchen@gmail.com';
 
